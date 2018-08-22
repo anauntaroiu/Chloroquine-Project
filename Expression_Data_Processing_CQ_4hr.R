@@ -117,8 +117,8 @@ for (i in 1:dim(Probe_names)[1]){ # Loop through each Gene ID
     break # Exit loop
   }
   
-  hits <- matrix()
-  count <- 1
+  hits <- matrix() # Reset variable
+  count <- 1 # Reset variable
   
   # This loop finds the probes that repeat in the list of probe names
   for (j in 1:dim(Probe_names)[1]){ # Loop through each Gene ID
@@ -262,7 +262,8 @@ for(i in 1:length(a)){ # Loop through all gene IDs with '.'
 }
 
 # Save only gene IDs, Fold Changes, and P-values
-MADE_Data <- Diff_Exprs_Genes[,c(1,2,6)]
+MADE_Data <- cbind(rownames(Diff_Exprs_Genes), Diff_Exprs_Genes$logFC,
+                   Diff_Exprs_Genes$adj.P.Val)
 colnames(MADE_Data) <- c("ORF_old", "logFC", "P_Value")
 
 # Save file for MADE integration
